@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { ReporteService } from '../../services/reporte.service'
 import { ToastController, AlertController } from '@ionic/angular';
 
@@ -23,8 +23,13 @@ export class ReportesPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Ingreso de reportes de practicantes',
-      subHeader: `Solicitud atendida por el servidor \"${'jose'}\"`,
-      message: `Carnet <strong>${datos}</strong><hr> Nombre <strong>lorem1</strong><hr> Curso <strong>lorem1</strong><hr> Procesado <strong>lorem1</strong><hr> Fecha <strong>lorem1</strong><hr> Cuerpo del Reporte <strong>lorem1</strong>`,
+      message: `Carnet <strong>${datos['carnet']}</strong><hr>
+                Nombre <strong>${datos['nombre']}</strong><hr>
+                Curso <strong>${datos['curso']}</strong><hr>
+                Procesado por <strong>${datos['servidor']}</strong><hr>
+                Fecha <strong>${datos['fecha']}</strong><hr>
+                Cuerpo del Reporte <strong>${datos['cuerpo']}</strong><hr>
+                Solicitud atendida por el servidor <strong>\"${datos['servidor']}\"</strong>`,
       buttons: ['OK']
     });
 
@@ -41,32 +46,34 @@ export class ReportesPage implements OnInit {
     toast.present();
   }
 
-  initializeItems() {
-    this.items = [
-      'Islamabad',
-      'Istanbul',
-      'Jakarta',
-      'Kiel',
-      'Kyoto',
-      'Le Havre',
-      'Lebanon',
-      'Lhasa',
-    ];
+  async initializeItems() {
+    this.reporteServices.obtenerReportes().subscribe(
+      res => {
+        console.log(res);
+        this.items = res;
+      },
+      err => console.log(err)
+    );
   }
 
-  getItems(ev) {
-    // Reset items back to all of the items
-    this.initializeItems();
+  async getItems(ev) {
 
-    // set val to the value of the ev target
+    //TODO: agrego valor a la busqueda
     var val = ev.target.value;
+    console.log(val)
 
-    // if the value is an empty string don't filter the items
+    //TODO: filstro la informacion que lleva la base de datos
     if (val && val.trim() != '') {
       this.items = this.items.filter((item) => {
-        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        console.log(item['carnet'])
+        return (item['carnet'].toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
+      console.log('paso aqui alguna vez')
+    } else {
+      //TODO: Al no tener nada la base de datos, reinicio la lista
+      this.initializeItems();
     }
+
   }
 
   getReportes() {

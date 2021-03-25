@@ -17,23 +17,26 @@ export class EnReportePage implements OnInit {
   ngOnInit() {
   }
 
-  async presentToast(mensaje) {
+  async presentToast(mensaje, alerta) {
     const toast = await this.toastController.create({
       message: mensaje,
-      color: 'danger',
+      color: alerta,
       position: 'top',
       duration: 2000
     });
     toast.present();
   }
-  
+
   obtenerDatos(id, name, cur, cuerpo) {
     console.log(id.value, name.value, cur.value, cuerpo.value)
     this.reporteServices.guardarReporte(id.value, name.value, cur.value, cuerpo.value).subscribe(
       res => {
         console.log(res)
+        //return [{ok:true, msg:'Reporte creado', carnet: '1111', nombre: 'nombre1', curso: 'redes2', cuerpo: 'hola ke ace', servidor: '201213283'}]
+        let data = res;
+        this.presentToast(`${res['msg']} Atendido por ${res['servidor']}`, 'success')
       },
-      err => this.presentToast("Error al enviar Reporte")
+      err => this.presentToast("Error al enviar Reporte", 'danger')
     )
   }
 

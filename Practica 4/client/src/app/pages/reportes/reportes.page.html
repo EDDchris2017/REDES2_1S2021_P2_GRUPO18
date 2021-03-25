@@ -19,11 +19,11 @@
         <ion-label>Accion</ion-label>
       </ion-list-header>
       <ion-item *ngFor="let item of items">
-        <ion-label> {{ item }}</ion-label>
-        <ion-label>Lorem.</ion-label>
-        <ion-label>Lorem.</ion-label>
-        <ion-label>Lorem.</ion-label>
-        <ion-label>Lorem.</ion-label>
+        <ion-label>{{ item.carnet }}</ion-label>
+        <ion-label>{{ item.nombre }}</ion-label>
+        <ion-label>{{ item.curso }}</ion-label>
+        <ion-label>{{ item.fecha }}</ion-label>
+        <ion-label>{{ item.servidor }}</ion-label>
         <ion-label>
           <ion-button (click)="presentAlert(item)">
             <ion-icon name="search-outline"></ion-icon>
