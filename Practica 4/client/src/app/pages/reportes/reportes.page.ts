@@ -19,12 +19,12 @@ export class ReportesPage implements OnInit {
     this.initializeItems();
   }
 
-  async presentAlert() {
+  async presentAlert(datos) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Alert',
-      subHeader: 'Subtitle',
-      message: 'This is an alert message.',
+      header: 'Ingreso de reportes de practicantes',
+      subHeader: `Solicitud atendida por el servidor \"${'jose'}\"`,
+      message: `Carnet <strong>${datos}</strong><hr> Nombre <strong>lorem1</strong><hr> Curso <strong>lorem1</strong><hr> Procesado <strong>lorem1</strong><hr> Fecha <strong>lorem1</strong><hr> Cuerpo del Reporte <strong>lorem1</strong>`,
       buttons: ['OK']
     });
 
