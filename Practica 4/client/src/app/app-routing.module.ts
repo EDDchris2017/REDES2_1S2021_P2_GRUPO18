@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'reportes',
     loadChildren: () => import('./pages/reportes/reportes.module').then( m => m.ReportesPageModule)
   },
+  {
+    path: 're-individual',
+    loadChildren: () => import('./pages/re-individual/re-individual.module').then( m => m.ReIndividualPageModule)
+  },
 ];
 
 @NgModule({

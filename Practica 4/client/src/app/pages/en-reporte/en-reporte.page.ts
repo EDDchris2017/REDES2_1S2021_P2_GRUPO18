@@ -26,6 +26,7 @@ export class EnReportePage implements OnInit {
     });
     toast.present();
   }
+  
   obtenerDatos(id, name, cur, cuerpo) {
     console.log(id.value, name.value, cur.value, cuerpo.value)
     this.reporteServices.guardarReporte(id.value, name.value, cur.value, cuerpo.value).subscribe(

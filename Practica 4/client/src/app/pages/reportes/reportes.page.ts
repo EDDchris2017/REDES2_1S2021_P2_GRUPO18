@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReporteService } from '../../services/reporte.service'
-import { ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-reportes',
@@ -12,10 +12,23 @@ export class ReportesPage implements OnInit {
   items;
 
   constructor(private reporteServices: ReporteService,
-    public toastController: ToastController) { }
+    public toastController: ToastController,
+    public alertController: AlertController) { }
 
   ngOnInit() {
     this.initializeItems();
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Alert',
+      subHeader: 'Subtitle',
+      message: 'This is an alert message.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   async presentToast(mensaje) {

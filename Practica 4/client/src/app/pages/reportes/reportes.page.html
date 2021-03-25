@@ -18,8 +18,12 @@
         <ion-label>Servidor</ion-label>
       </ion-list-header>
       <ion-item *ngFor="let item of items">
-       
         <ion-label> {{ item }}</ion-label>
+        <ion-label>
+          <ion-button (click)="presentAlert()">
+            <ion-icon name="search-outline"></ion-icon>
+          </ion-button>
+        </ion-label>
       </ion-item>
     </ion-list>
   </div>
