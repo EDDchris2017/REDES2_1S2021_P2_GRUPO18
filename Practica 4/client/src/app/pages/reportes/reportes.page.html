@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>reportes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1>Listado de Reportes</h1>
+  <div text-center>
+    <h1 text-center>Carnet?</h1>
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-list>
+      <ion-list-header lines="inset">
+        <ion-label>Carnet</ion-label>
+        <ion-label>Nombre</ion-label>
+        <ion-label>Proyecto</ion-label>
+        <ion-label>Fecha</ion-label>
+        <ion-label>Servidor</ion-label>
+      </ion-list-header>
+      <ion-item *ngFor="let item of items">
+       
+        <ion-label> {{ item }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
