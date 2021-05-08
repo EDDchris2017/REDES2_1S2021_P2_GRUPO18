@@ -16,8 +16,19 @@ export class ReporteService {
     return this.http.post(`${this.API_URL}`,data);
   }
 
+  //Todo: Envio la informacion de los datos para crear reporte de venetos
+  guardarReporteEventos(carnet, nombre, nombreEvento, idEvento, extencion, base64) {
+    const data = {carnet, nombre, nombreEvento, idEvento, extencion, base64}
+    return this.http.post(`${this.API_URL}evento/`,data);
+  }
+
   //Todo Recibo los datos del usuario
   obtenerReportes(){
     return this.http.get(`${this.API_URL}`)
+  }
+
+   //Todo Recibo los datos de la asistencia
+   obtenerReportesAsistencia(){
+    return this.http.get(`${this.API_URL}evento/`)
   }
 }
